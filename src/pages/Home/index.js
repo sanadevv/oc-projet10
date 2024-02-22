@@ -14,13 +14,10 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const { data } = useData();
-  if (!data) {
-    return <div>Chargement en cours...</div>;
-  }
-  const byDateDesc = data?.events.sort((evtA, evtB) =>
+  const byDateDesc = data?.events?.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
-  const last = byDateDesc[0]
+  const last = byDateDesc?.[0] || { cover: "", title: "", date: "" }
   return <>
       <header>
         <Menu />
